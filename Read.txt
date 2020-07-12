@@ -1,0 +1,94 @@
+①用 idea 打开dangdang项目
+
+②配置自己的Tomcat:
+    修改 URL:     http://localhost:8089/dangdang_war_exploded/    中的端口号
+     与你的tomcat使用的端口号 一致，
+     （如：你的端口号为8086，修改为http://localhost:8086/dangdang_war_exploded/    ）
+
+③打开oracle创建表和序列，代码如下：
+
+create table D_USERS
+(
+  id      NUMBER(11) not null,
+  name    VARCHAR2(50) not null,
+  pass    VARCHAR2(50) not null,
+  shoppingcar_id NUMBER(11)
+);
+create sequence users_id_seq1;
+
+insert into D_USERS values(users_id_seq1.nextval, '小罗', '123', null);
+insert into D_USERS values(users_id_seq1.nextval, '小杨', '123', null);
+
+----------------------------------------------------------------------------------------
+
+create table bookinfo(
+bookId NUMBER(11)  primary key,
+
+bookName varchar(30) not null,
+
+writer varchar(30) not null ,
+bookMoney NUMBER(6,2) not null,
+booknum NUMBER(11)
+);
+
+insert into bookinfo values(1, '家人闲坐，灯火可亲', '汪曾祺', 38.30,10);
+insert into bookinfo values(2, '国富论(上下册）', '（英）亚当·斯密', 70.31,10);
+insert into bookinfo values(3, '显微镜下的古人生活', '《新周刊》杂志社', 55.60,10);
+insert into bookinfo values(4, '向上生长', '九边 ', 36.50,10);
+insert into bookinfo values(5, '庆余年', '猫腻', 123.20,10);
+insert into bookinfo values(6, '社交新零售', '王欧飏', 39.30,10);
+
+---------------------------------------------------------------------------------------
+
+CREATE TABLE cart_item (
+  username VARCHAR2(50),
+  goods_name varchar2(50) DEFAULT NULL  ,
+  amount number(10) DEFAULT NULL ,
+  price number(10,2) DEFAULT NULL ,
+  sum_money number(10,2) DEFAULT NULL ,
+  goods_id number(10) DEFAULT NULL ,
+  cart_item_id number(10) NOT NULL ,
+  PRIMARY KEY (cart_item_id)
+)；
+create sequence seq_cart_item
+increment  by  1
+start with 1
+maxvalue 99999;
+commit；
+
+
+---------------------------------------------------------------------------------------
+create table jx_t(
+ zname varchar2(20),
+ ename varchar2(10)
+);
+insert into jx_t values('南昌','nc');
+insert into jx_t values('抚州','fz');
+insert into jx_t values('上饶','sr');
+select * from jx_t;
+create table cq_t(
+ zname varchar2(20) ,
+ ename varchar2(10)
+);
+insert into cq_t values('江津','jj');
+insert into cq_t values('渝北','yb');
+insert into cq_t values('九龙坡','jlp');
+insert into cq_t values('巴南','pn');
+insert into cq_t values('沙坪坝','spb');
+
+----------------------------------------------------------------------------------------
+④ 点击 运行dangdang项目
+
+⑤ （ ！！！注意，以下地址中的端口号要与①中修改后的一样（比如8086）才能正确访问）
+   运行   localhost:8089/dangdang_war_exploded/      看到首页
+   运行   localhost:8089/dangdang_war_exploded/reg.jsp    看到注册界面
+   运行   localhost:8089/dangdang_war_exploded/login.jsp      看到登录界面
+   运行   localhost:8089/dangdang_war_exploded/list.do      看到图书列表界面
+
+    点击首页的    >>>>>图书列表<<<<<  进入图书列表
+    点击首页的    购物车  进入购物车列表
+
+说明：未登录的用户，购物车为空，不同用户有不同购物车
+
+
+
